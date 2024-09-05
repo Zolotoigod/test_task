@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import SexSelector, { Sex } from './SexSelector';
 import { Employee } from '../interfaces/employee';
 import { Errors } from '../interfaces/requests';
+import { AxiosResponse } from 'axios';
 
 interface EmployeeFormProps {
     initialEmployee: Employee;
-    onSubmit: (employee: Employee) => Promise<any>;
+    onSubmit: (employee: Employee) => Promise<AxiosResponse>;
     initialErrors: Errors;
 }
 

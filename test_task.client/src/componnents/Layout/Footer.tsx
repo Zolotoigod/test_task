@@ -1,6 +1,6 @@
 function Footer() {
     return (
-        <div>
+        <div className='footer'>
             <p>&copy; ZOLOTOI_SYSTEMS {(new Date()).getFullYear()}</p>
         </div>
         

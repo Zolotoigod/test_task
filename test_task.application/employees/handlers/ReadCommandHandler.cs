@@ -24,13 +24,15 @@ namespace test_task.application.employees.handlers
             if(request.OrderBy == core.enums.SortRule.asc)
             {
                 query = _context.Employees
-                .Where(e => e.LastName.Contains(request.LastNameFilter) && e.Active)
+                .Where(e => e.LastName.ToLower()
+                    .Contains(request.LastNameFilter.ToLower()) && e.Active)
                 .OrderBy(e => e.LastName);
             }
             else
             {
                 query = _context.Employees
-                .Where(e => e.LastName.Contains(request.LastNameFilter) && e.Active)
+                .Where(e => e.LastName.ToLower()
+                    .Contains(request.LastNameFilter.ToLower()) && e.Active)
                 .OrderByDescending(e => e.LastName);
             }
 

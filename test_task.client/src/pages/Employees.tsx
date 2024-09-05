@@ -8,19 +8,24 @@ import CheckboxExt from "../componnents/CheckboxExt";
 function Employees() {
 
     const [employees, setEmployees] = useState<EmployeeVM[]>([]);
-    const [sortRule, setSortRule] = useState<SortRule>(SortRule.asc);
     const [filter, setFilter] = useState<string>();
     const [toDelete, setToDelete] = useState<string[]>([]);
     const router = useNavigate();
 
     async function LoadEmployees() {
-        const date = await getEmployees({ SortRule: sortRule, LastNameFilter: filter });
-        setEmployees(date);
+        if (!filter?.length) {
+            const date = await getEmployees({ SortRule: SortRule.asc, LastNameFilter: '' });
+            setEmployees(date);
+        } else {
+            const date = await getEmployees({ SortRule: SortRule.asc, LastNameFilter: `LastNameFilter=${filter}&` });
+            setEmployees(date);
+        };
+        
     };
 
     useEffect(() => {
         LoadEmployees();
-    },[]);
+    },[filter]);
 
     async function onDelete() {
         await removeEmployees(toDelete);
@@ -46,10 +51,15 @@ function Employees() {
         console.log('save ' + id);
     };
 
+    function handleFilter(e: React.ChangeEvent<HTMLInputElement>) {
+        setFilter(e.target.value);
+    };
+
     return (
         <div>
-            <label>Filter by last name</label>
-            <input type="text" />
+            <label className='inputLabel'>Filter by last name
+                <input name='filter' type='text' value={filter} onChange={handleFilter} />
+            </label>
             <button onClick={() => router('/create')}>NEW</button>
             <button onClick={onDelete} >DELETE SELECTED</button>
             <table>

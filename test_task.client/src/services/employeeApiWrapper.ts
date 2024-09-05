@@ -17,23 +17,6 @@ export async function getEmployees(request: ReadRequest) {
     }
 
     return result.data as EmployeeVM[];
-
-    // fetch
-    /*const result =
-        await fetch(`${BASE_API}read?${request.LastNameFilter}OrderBy=${request.SortRule}`,
-        {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-    if (!result.ok) {
-        throw new Error(`Failed to load employees: ${result.statusText}`);
-    }
-
-    const data: EmployeeVM[] = await result.json();
-    return data;*/
 };
 
 export async function createEmployee(request: Employee) {
@@ -48,18 +31,6 @@ export async function createEmployee(request: Employee) {
     });
 
     return result;
-
-    // fetch
-    /*const result = await fetch(`${BASE_API}create`,
-    {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(request),
-    });
-
-    return result;*/
 };
 
 export async function updateEmployee(request: Employee) {
@@ -73,18 +44,6 @@ export async function updateEmployee(request: Employee) {
     });
 
     return result;
-
-    // fetch
-    /*const result = await fetch(`${BASE_API}update`,
-    {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(request),
-    });
-
-    return result;*/
 };
 
 export async function removeEmployees(request: string[]) {
@@ -99,20 +58,4 @@ export async function removeEmployees(request: string[]) {
     if (result.status !== 200) {
         throw new Error(`Failed to remove employees: ${result.statusText}`);
     }
-
-    // fetch
-    /*const result = await fetch(`${BASE_API}delete`,
-    {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            Guids: request
-        }),
-    });
-
-    if (!result.ok) {
-        throw new Error(`Failed to remove employees: ${result.statusText}`);
-    }*/
 };

@@ -25,9 +25,8 @@ namespace test_task.Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            //var result = await _mediator.Send(command);
-            //return Ok(result);
-            return Ok();
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpGet("read")]
@@ -52,7 +51,7 @@ namespace test_task.Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            //await _mediator.Send(command);
+            await _mediator.Send(command);
             return Ok();
         }
 
@@ -65,7 +64,7 @@ namespace test_task.Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            //await _mediator.Send(command);
+            await _mediator.Send(command);
             return Ok();
         }
     }

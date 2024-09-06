@@ -1,8 +1,10 @@
 function Header() {
     return (
-        <div className='header'>
-            <h1>ZOLOTOI_SYSTEMS</h1>
-        </div>
+        <header>
+            <div className='header'>
+                <h2>ZOLOTOI_SYSTEMS</h2>
+            </div>
+        </header>
     );
 }
 

@@ -47,25 +47,25 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ initialEmployee, onSubmit, 
     }
 
     return (
-        <div>
-            <form className='employeeForm' name='employeeForm' onSubmit={handleSubmit}>
-                <label className='inputLabel'>FIRST NAME
+        <div className='forms'>
+            <form name='employeeForm' onSubmit={handleSubmit}>
+                <label className='input-lable'>FIRST NAME
                     <input name='Firstname' placeholder='' type='text' value={employee.Firstname} onChange={handleChange} />
                     {errors.Firstname && errors.Firstname.map((message) => (<span className='error' key={message}>{message}</span>))}
                 </label>
-                <label className='inputLabel'>LAST NAME
+                <label className='input-lable'>LAST NAME
                     <input name='Lastname' type='text' value={employee.Lastname} onChange={handleChange} />
                     {errors.Lastname && errors.Lastname.map((message) => (<span className='error' key={message}>{message}</span>))}
                 </label>
-                <label className='inputLabel'>AGE
+                <label className='input-lable'>AGE
                     <input name='Age' type='number' value={employee.Age} onChange={handleChange} />
                     {errors.Age && errors.Age.map((message) => (<span className='error' key={message}>{message}</span>))}
                 </label>
-                <label className='inputLabel'>SEX
+                <label className='input-lable'>SEX
                     <SexSelector selectedSex={employee.Sex as Sex} onChange={handleSexChange} />
                     {errors.Sex && errors.Sex.map((message) => (<span className='error' key={message}>{message}</span>))}
                 </label>
-                <button type="submit">Submit</button>
+                <button className='submit' type="submit">Submit</button>
             </form>
         </div>
     );

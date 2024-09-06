@@ -1,8 +1,11 @@
 ﻿#root {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem;
     text-align: center;
+    display: flex;
+    min-height: 100vh;
+    padding: 1rem;
+    align-items:stretch;
 }
 
 th, td {
@@ -20,4 +23,78 @@ th, td {
     background-repeat: no-repeat;
     border: solid;
     cursor: pointer;
+}
+
+.layout {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header {
+    padding: 10px;
+    text-align: start;
+    border-bottom: solid;
+    border-color: whitesmoke;
+    margin-left:-20vw;
+    margin-right:-20vw;
+}
+
+.header h2 {
+    margin-left: 5px;
+}
+
+.footer {
+    padding: 10px;
+    text-align: start;
+    border-top: solid;
+    border-color: whitesmoke;
+    margin-left: -20vw;
+    margin-right: -20vw;
+}
+
+.employees {
+    border: solid whitesmoke;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.table-striped {
+    width: 100%;
+}
+
+.table-striped td {
+    border-bottom: 1px solid #363636;
+}
+
+.table-striped tr:nth-child(even) {
+    background-color: #6e6e6e;
+}
+
+.input-lable {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel {
+    display: flex;
+    justify-content:space-between;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin: 30px;
+}
+
+.submit {
+    margin: 10px;
+}
+
+.error{
+    color: red;
 }

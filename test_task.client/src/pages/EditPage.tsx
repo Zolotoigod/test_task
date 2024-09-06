@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Employee, EmployeeVM } from "../interfaces/employee";
 import { updateEmployee } from "../services/employeeApiWrapper";
 import { Errors } from "../interfaces/requests";
@@ -12,6 +12,7 @@ const emptyErrors: Errors = {
 };
 
 function EditPage() {
+    const router = useNavigate();
     const location = useLocation();
     const employeeModel = location.state as EmployeeVM || {};
     const employeeToEdit: Employee = {
@@ -28,11 +29,14 @@ function EditPage() {
     }
 
     return (
-        <EmployeeForm
-            initialEmployee={employeeToEdit}
-            onSubmit={handleUpdate}
-            initialErrors={emptyErrors}
-        />
+        <div className='forms'>
+            <EmployeeForm
+                initialEmployee={employeeToEdit}
+                onSubmit={handleUpdate}
+                initialErrors={emptyErrors}
+            />
+            <button type='button' onClick={() => router('/')}>Return</button>
+        </div>
     );
 };
 

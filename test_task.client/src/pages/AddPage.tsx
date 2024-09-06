@@ -1,10 +1,8 @@
-//import { useState } from "react";
-//import SexSelector, { Sex } from "../componnents/SexSelector";
 import { Employee } from "../interfaces/employee";
 import { createEmployee } from "../services/employeeApiWrapper";
-//import { useNavigate } from "react-router-dom";
 import { Errors } from "../interfaces/requests";
 import EmployeeForm from "../componnents/EmployeeForm";
+import { useNavigate } from "react-router-dom";
 
 const emptyEmployee: Employee = {
     Id: '',
@@ -23,17 +21,22 @@ const emptyErrors: Errors = {
 
 function AddPage() {
 
+    const router = useNavigate();
+
     async function handleCreate(employee: Employee) {
         const result = await createEmployee(employee);
         return result;
     }
 
     return (
-        <EmployeeForm
-        initialEmployee={emptyEmployee}
-        onSubmit={handleCreate}
-        initialErrors={emptyErrors}
-        />
+        <div className = 'forms'>
+            <EmployeeForm
+                initialEmployee={emptyEmployee}
+                onSubmit={handleCreate}
+                initialErrors={emptyErrors}
+            />
+            <button type='button' onClick={() => router('/')}>Return</button>
+        </div>
     );
 };
 

@@ -4,13 +4,18 @@ import { getEmployees, removeEmployees } from "../services/employeeApiWrapper";
 import { SortRule } from "../interfaces/requests";
 import { useNavigate } from "react-router-dom";
 import CheckboxExt from "../componnents/CheckboxExt";
+import ConfrimMoadl from "../componnents/ConfrimModal";
 
 function Employees() {
+
+    const CONFRIM_DELETE = 'Delete selected items?';
 
     const [employees, setEmployees] = useState<EmployeeVM[]>([]);
     const [filter, setFilter] = useState<string>('');
     const [toDelete, setToDelete] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
+    const [deleteDisable, setDeleteDisable] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
     const router = useNavigate();
 
     async function LoadEmployees() {
@@ -28,12 +33,24 @@ function Employees() {
 
     useEffect(() => {
         LoadEmployees();
+        return;
     }, [filter]);
 
     async function onDelete() {
-        await removeEmployees(toDelete);
-        console.log('deleted');
-        LoadEmployees();
+        setModalOpen(true);
+    };
+
+    async function DeleteConfrim() {
+        if (toDelete.length) {
+            await removeEmployees(toDelete);
+            console.log('deleted items' + toDelete.length);
+            LoadEmployees();
+        };
+        setModalOpen(false);
+    };
+
+    function DeleteCancel() {
+        setModalOpen(false);
     };
 
     function onEdit(employee: EmployeeVM) {
@@ -44,6 +61,7 @@ function Employees() {
     function onCheck(id: string) {
         if (!toDelete.find(item => item === id)) {
             toDelete.push(id);
+            setDeleteDisable(false);
             console.log('to delete ' + id);
         }
     };
@@ -51,6 +69,9 @@ function Employees() {
     function onUncheck(id: string) {
         const newDelete = toDelete.filter(item => item !== id);
         setToDelete(newDelete);
+        if (!newDelete.length) {
+            setDeleteDisable(true);
+        }
         console.log('save ' + id);
     };
 
@@ -65,7 +86,8 @@ function Employees() {
                 <label className='input-lable'>Filter by last name
                     <input name='filter' type='text' value={filter} onChange={e => handleFilter(e)} />
                 </label>
-                <button type='button' onClick={onDelete} >DELETE SELECTED</button>
+                <button type='button' onClick={onDelete} disabled={deleteDisable}>DELETE SELECTED</button>
+                <ConfrimMoadl isOpen={modalOpen} message={CONFRIM_DELETE} onCancel={DeleteCancel} onConfirm={DeleteConfrim} />
             </div>
 
             {loading ? (<div>...Loading</div>) : employees.length ? (
@@ -74,8 +96,7 @@ function Employees() {
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
+                                <th>Name</th>
                                 <th>Age</th>
                                 <th>Sex</th>
                             </tr>
@@ -84,9 +105,8 @@ function Employees() {
                             {employees.map((employee) => (
                                 <tr key={employee.id}>
                                     <td><CheckboxExt onCheck={() => onCheck(employee.id)} onUncheck={() => onUncheck(employee.id)} /></td>
-                                    <td>{employee.firstname}</td>
-                                    <td>{employee.lastname}</td>
-                                    <td>{employee.age}</td>
+                                    <td>{employee.firstname + ' ' + employee.lastname}</td>
+                                    <td>{employee.age + ' years'}</td>
                                     <td>{employee.sex}</td>
                                     <td><button className="svg-button" onClick={() => onEdit(employee)} /></td>
                                 </tr>

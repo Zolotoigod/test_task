@@ -54,7 +54,7 @@ th, td {
 }
 
 .employees {
-    border: solid whitesmoke;
+    border: 2px solid whitesmoke;
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px;
@@ -72,6 +72,28 @@ th, td {
 
 .table-striped tr:nth-child(even) {
     background-color: #6e6e6e;
+}
+
+@media (prefers-color-scheme: light) {
+    .header {
+        border-color: black;
+    }
+
+    .footer {
+        border-color: black;
+    }
+
+    .employees {
+        border: 2px solid black;
+    }
+
+    .table-striped td {
+        border-bottom: 1px solid #000000;
+    }
+
+    .table-striped tr:nth-child(even) {
+        background-color: #6e6e6e;
+    }
 }
 
 .input-lable {
@@ -97,4 +119,34 @@ th, td {
 
 .error{
     color: red;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    background-color: #a6a6a6;
+    width: 30%;
+    height: 20%;
+    text-align: center;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 3px solid #cf3a3a;
+}
+
+.modal button{
+    margin: 0 20px;
 }

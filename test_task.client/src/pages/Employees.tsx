@@ -113,7 +113,10 @@ function Employees() {
                             ))}
                         </tbody>
                     </table>
-                </div>) : (<div>Emloyees list is empty</div>)}
+                </div>) : (
+                <div>
+                    <h2>Emloyees list is empty</h2>
+                </div>)}
             
         </div>
     );

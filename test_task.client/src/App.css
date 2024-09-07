@@ -99,11 +99,13 @@ th, td {
 .input-lable {
     display: flex;
     flex-direction: column;
+    margin: 5px 0;
 }
 
 .panel {
     display: flex;
     justify-content:space-between;
+    min-width: 500px;
 }
 
 .forms {
@@ -111,10 +113,6 @@ th, td {
     flex-direction: column;
     text-align: start;
     margin: 30px;
-}
-
-.submit {
-    margin: 10px;
 }
 
 .error{

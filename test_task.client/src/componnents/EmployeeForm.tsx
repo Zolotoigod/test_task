@@ -47,8 +47,9 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ initialEmployee, onSubmit, 
     }
 
     return (
-        <div className='forms'>
-            <form name='employeeForm' onSubmit={handleSubmit}>
+        
+        <form name='employeeForm' onSubmit={handleSubmit}>
+            <div className='forms'>
                 <label className='input-lable'>FIRST NAME
                     <input name='Firstname' placeholder='' type='text' value={employee.Firstname} onChange={handleChange} />
                     {errors.Firstname && errors.Firstname.map((message) => (<span className='error' key={message}>{message}</span>))}
@@ -66,8 +67,9 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ initialEmployee, onSubmit, 
                     {errors.Sex && errors.Sex.map((message) => (<span className='error' key={message}>{message}</span>))}
                 </label>
                 <button className='submit' type="submit">Submit</button>
+            </div>
             </form>
-        </div>
+        
     );
 };
 

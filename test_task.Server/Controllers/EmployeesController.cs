@@ -20,11 +20,6 @@ namespace test_task.Server.Controllers
         [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateEmployee([FromBody] CreateCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var result = await _mediator.Send(command);
             return Ok(result);
         }
@@ -33,11 +28,6 @@ namespace test_task.Server.Controllers
         [ProducesResponseType(typeof(List<EmployeeVM>), StatusCodes.Status200OK)]
         public async Task<IActionResult> ReadEmployee([FromQuery] ReadCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var result = await _mediator.Send(command);
             return Ok(result);
         }
@@ -46,11 +36,6 @@ namespace test_task.Server.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateEmployee([FromBody] UpdateCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             await _mediator.Send(command);
             return Ok();
         }
@@ -59,11 +44,6 @@ namespace test_task.Server.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteEmployee([FromBody] DeleteCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             await _mediator.Send(command);
             return Ok();
         }
